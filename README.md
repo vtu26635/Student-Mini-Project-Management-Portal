@@ -1,6 +1,5 @@
 # Student-Mini-Project-Management-Portal
 
-# 🎓 Student Mini Project Management Portal
 
 A modern, full-stack web application designed to streamline the assignment, dispatching, tracking, and evaluation of student mini-projects. Featuring an analytical metrics dashboard, dynamic task dispatch logs, a smooth responsive interface, and an advanced dark mode switching subsystem.
 
