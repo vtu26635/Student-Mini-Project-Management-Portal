@@ -1,0 +1,119 @@
+@import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+
+/* --- TAILWIND v4 THEME CUSTOMIZATIONS --- */
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  
+  
+  /* Custom Animations */
+  --animate-fade-in: fade-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-slide-up: slide-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-scale-in: scale-in 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+
+  /* Animation Keyframes */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+/* --- BASE APPLICATION RAILS --- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased font-sans min-h-screen transition-colors duration-200;
+  }
+
+  /* Deep High-Contrast Premium Dark Mode Rules */
+  body.dark {
+    @apply bg-slate-950 text-slate-100;
+    
+    /* Overriding underlying card profiles globally in dark mode */
+    .bg-white {
+      @apply bg-slate-900 border-slate-800 text-slate-100;
+    }
+    .text-slate-900 {
+      @apply text-slate-100;
+    }
+    .text-slate-500 {
+      @apply text-slate-400;
+    }
+    .text-slate-600 {
+      @apply text-slate-300;
+    }
+    .text-slate-700 {
+      @apply text-slate-200;
+    }
+    .border-slate-200 {
+      @apply border-slate-800;
+    }
+    .border-slate-100 {
+      @apply border-slate-800/60;
+    }
+    .bg-slate-50 {
+      @apply bg-slate-950;
+    }
+    input, textarea, select {
+      @apply bg-slate-950 border-slate-800 text-white placeholder-slate-500 focus:border-indigo-500 focus:ring-indigo-500/20;
+    }
+  }
+}
+
+/* --- PREMIUM UX LAYOUT UTILITIES --- */
+@layer utilities {
+  /* Smooth Custom Scrollbar for Project Grid lists */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 dark:bg-slate-800 rounded-full hover:bg-slate-300 dark:hover:bg-slate-700;
+  }
+
+  /* Micro-interactions and card elevations */
+  .premium-card {
+    @apply bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 shadow-sm shadow-slate-100/40 dark:shadow-none transition-all duration-300 hover:shadow-md hover:shadow-slate-200/30 dark:hover:border-slate-700/80;
+  }
+
+  .interactive-element {
+    @apply transition-all duration-200 active:scale-[0.98];
+  }
+  
+  /* Status Badge Accent Overlays */
+  .badge-pending {
+    @apply bg-amber-50 text-amber-700 border border-amber-200/60 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20;
+  }
+  .badge-progress {
+    @apply bg-indigo-50 text-indigo-700 border border-indigo-200/60 dark:bg-indigo-500/10 dark:text-indigo-400 dark:border-indigo-500/20;
+  }
+  .badge-completed {
+    @apply bg-emerald-50 text-emerald-700 border border-emerald-200/60 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20;
+  }
+}
